@@ -1,12 +1,14 @@
-목사님, 요청하신 **항공 일정(2월 9일 출발)**과 빈펄 리조트 숙박(2박), 그리고 항공료 예산을 반영하여 대시보드 코드를 수정해 드립니다.
+목사님, 2박 4일 일정으로 정확하게 수정했습니다.
 
-💡 참고 사항:
+수정 사항:
 
-날짜 조정: 말씀하신 '2월 9일(월) 출발'을 기준으로 할 경우, 귀국일이 8일이 되는 것은 시간 순서상 불가능하여 일반적인 3박 5일 패턴인 2월 13일(금) 새벽 01:30 귀국으로 일정을 조정하여 반영했습니다. (만약 출발일이 2월 5일이었다면 다시 말씀해 주세요!)
+일정 변경: 2월 9일(월) 출발 ~ 2월 12일(목) 도착 (2박 4일)
 
-숙박: 빈펄 리조트 2박 비용(150만 원)을 예산에 반영했습니다.
+귀국 편: 현지 시간 2월 12일(목) 새벽 01:30 출발로 반영했습니다. (즉, 수요일 밤에 공항으로 이동합니다.)
 
-수정된 코드는 아래와 같습니다.
+스케줄: 3일차(수)에 체크아웃 후 시내 관광을 하고 공항으로 바로 이동하는 꽉 찬 일정으로 조정했습니다.
+
+수정된 전체 코드는 아래와 같습니다.
 
 HTML
 <!DOCTYPE html>
@@ -72,11 +74,11 @@ HTML
             const [activeTab, setActiveTab] = useState('schedule');
             const [mapDay, setMapDay] = useState(1);
 
-            // --- 데이터 섹션: 업데이트된 정보 반영 ---
+            // --- 데이터 섹션: 2박 4일 일정 반영 ---
             const tripData = {
                 info: {
                     title: "2026 학생회 나트랑 수련회",
-                    dates: "2026.02.09(월) - 02.13(금) [3박 5일]",
+                    dates: "2026.02.09(월) - 02.12(목) [2박 4일]",
                     location: "베트남 나트랑 & 빈펄 리조트",
                     theme: "하나됨을 위한 쉼과 교제",
                     participants: {
@@ -95,8 +97,9 @@ HTML
                             { time: "09:40", activity: "나트랑(깜란) 공항 도착", type: "move" },
                             { time: "11:00", activity: "시내 이동 및 환전", type: "move" },
                             { time: "12:00", activity: "점심: 쌀국수 맛집", type: "meal" },
-                            { time: "14:00", activity: "빈펄 리조트 체크인 & 휴식", type: "rest" },
-                            { time: "18:00", activity: "저녁: 리조트 내 뷔페/식사", type: "meal" },
+                            { time: "14:00", activity: "빈펄 리조트 체크인 (2박)", type: "rest" },
+                            { time: "16:00", activity: "리조트 수영 및 휴식", type: "rest" },
+                            { time: "18:00", activity: "저녁: 리조트 내 식사", type: "meal" },
                             { time: "20:00", activity: "저녁 나눔 및 기도회", type: "worship" }
                         ]
                     },
@@ -118,28 +121,25 @@ HTML
                     {
                         day: "Day 3",
                         date: "2.11 (수)",
-                        focus: "문화 탐방 및 힐링",
+                        focus: "문화 탐방 및 출국 준비",
                         timeline: [
-                            { time: "09:00", activity: "조식 및 리조트 수영", type: "rest" },
-                            { time: "11:30", activity: "시내 관광 (포나가르 사원)", type: "tour" },
-                            { time: "13:00", activity: "점심: 씀모이 가든", type: "meal" },
-                            { time: "15:00", activity: "머드 스파 체험 (아이리조트)", type: "rest" },
-                            { time: "18:00", activity: "롯데마트 장보기", type: "work" },
-                            { time: "19:30", activity: "마지막 밤 바베큐/파티", type: "worship" }
+                            { time: "09:00", activity: "조식 및 짐 정리", type: "rest" },
+                            { time: "11:00", activity: "체크아웃", type: "move" },
+                            { time: "12:30", activity: "점심: 씀모이 가든", type: "meal" },
+                            { time: "14:00", activity: "시내 관광 (포나가르/대성당)", type: "tour" },
+                            { time: "16:00", activity: "롯데마트 기념품 쇼핑", type: "work" },
+                            { time: "18:00", activity: "마지막 저녁 식사 (반세오)", type: "meal" },
+                            { time: "20:00", activity: "전신 마사지 및 샤워", type: "rest" },
+                            { time: "22:00", activity: "깜란 공항으로 이동", type: "move" }
                         ]
                     },
                     {
                         day: "Day 4",
                         date: "2.12 (목)",
-                        focus: "휴식 및 귀국 준비",
+                        focus: "귀국",
                         timeline: [
-                            { time: "11:00", activity: "체크아웃", type: "move" },
-                            { time: "12:30", activity: "점심: 현지식 (반세오)", type: "meal" },
-                            { time: "14:00", activity: "카페(CCCP) 및 기념품 쇼핑", type: "rest" },
-                            { time: "17:00", activity: "마사지 및 휴식", type: "rest" },
-                            { time: "20:00", activity: "공항 이동", type: "move" },
-                            { time: "22:30", activity: "출국 수속", type: "move" },
-                            { time: "01:30", activity: "인천행 비행기 탑승 (2/13 금)", type: "move" }
+                            { time: "01:30", activity: "나트랑 출발 (비행기)", type: "move" },
+                            { time: "08:30", activity: "인천공항 도착 및 해산", type: "move" }
                         ]
                     }
                 ],
@@ -147,10 +147,10 @@ HTML
                     per_person: "약 980,000원 (항공포함)",
                     total: "약 6,850,000원 (7인)",
                     items: [
-                        { category: "항공권", detail: "인천-나트랑 왕복 (7인)", cost: "3,570,000원" },
-                        { category: "숙박비", detail: "빈펄 리조트 2박 (3박 5일 일정)", cost: "1,500,000원" },
+                        { category: "항공권", detail: "인천-나트랑 왕복 (7인, 1인 51만)", cost: "3,570,000원" },
+                        { category: "숙박비", detail: "빈펄 리조트 2박 (3베드 풀빌라)", cost: "1,500,000원" },
                         { category: "식비", detail: "해산물, 현지식, 야시장, 간식", cost: "900,000원" },
-                        { category: "활동비", detail: "빈원더스, 머드스파 등", cost: "480,000원" },
+                        { category: "활동비", detail: "빈원더스, 마사지 등", cost: "480,000원" },
                         { category: "교통비", detail: "공항 픽업/샌딩, 그랩", cost: "200,000원" },
                         { category: "예비비", detail: "비상금 및 기타", cost: "200,000원" }
                     ]
@@ -173,17 +173,15 @@ HTML
                 haisan: { q: "Hải sản Thanh Sương 2", label: "하이카2" },
                 vinwonders: { q: "VinWonders Nha Trang", label: "빈원더스" },
                 ponagar: { q: "Ponagar Temple", label: "포나가르 사원" },
-                iresort: { q: "I-Resort Mud Spa", label: "아이리조트" },
                 lotte: { q: "Lotte Mart Nha Trang", label: "롯데마트" },
                 banhxeo: { q: "Bánh Xèo Chảo 85", label: "반세오" },
-                cafe: { q: "CCCP Coffee", label: "CCCP 커피" },
             };
 
             const dayRoutes = {
                 1: { stops: ['airport', 'resort_area'], center: 'airport' },
                 2: { stops: ['resort_area', 'vinwonders', 'resort_area'], center: 'vinwonders' },
-                3: { stops: ['resort_area', 'ponagar', 'iresort', 'lotte'], center: 'ponagar' },
-                4: { stops: ['resort_area', 'banhxeo', 'cafe', 'airport'], center: 'banhxeo' }
+                3: { stops: ['resort_area', 'ponagar', 'lotte', 'banhxeo', 'airport'], center: 'ponagar' },
+                4: { stops: ['airport'], center: 'airport' }
             };
 
             const getGoogleMapUrl = (day) => {
@@ -390,7 +388,7 @@ HTML
                             <div className="flex gap-4 text-xs font-medium bg-emerald-700/50 p-3 rounded-xl backdrop-blur-sm">
                                 <div className="flex items-center gap-1.5">
                                     <Users className="w-3.5 h-3.5 opacity-70" />
-                                    <span>총 {tripData.info.participants.total}명 (빈펄)</span>
+                                    <span>총 {tripData.info.participants.total}명 (2박 4일)</span>
                                 </div>
                             </div>
                         </div>
